@@ -101,14 +101,14 @@ pub(crate) fn chunk_auto_radius(
             let chunks_high = (window_height as f32 / chunk_px_height as f32).ceil() as u32 + 1;
             let spawn_dimensions = Dimension2::new(chunks_wide, chunks_high);
             tilemap.set_auto_spawn(spawn_dimensions);
-            for (_camera, camera_transform) in camera_query.iter() {
-                auto_spawn(
-                    camera_transform,
-                    &tilemap_transform,
-                    &mut tilemap,
-                    spawn_dimensions,
-                );
-            }
+            // for (_camera, camera_transform) in camera_query.iter() {
+            //     auto_spawn(
+            //         camera_transform,
+            //         &tilemap_transform,
+            //         &mut tilemap,
+            //         spawn_dimensions,
+            //     );
+            // }
         }
     }
 }
