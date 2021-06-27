@@ -74,14 +74,14 @@ fn auto_spawn(
         }
     }
 
-    let spawned_list = tilemap.spawned_chunks_mut().clone();
-    for point in spawned_list.iter() {
-        if !new_spawned.contains(&point.into()) {
-            if let Err(e) = tilemap.despawn_chunk(point) {
-                warn!("{}", e);
-            }
-        }
-    }
+    // let spawned_list = tilemap.spawned_chunks_mut().clone();
+    // for point in spawned_list.iter() {
+    //     if !new_spawned.contains(&point.into()) {
+    //         if let Err(e) = tilemap.despawn_chunk(point) {
+    //             warn!("{}", e);
+    //         }
+    //     }
+    // }
 }
 
 /// On window size change, the radius of chunks changes if needed.
@@ -101,14 +101,14 @@ pub(crate) fn chunk_auto_radius(
             let chunks_high = (window_height as f32 / chunk_px_height as f32).ceil() as u32 + 1;
             let spawn_dimensions = Dimension2::new(chunks_wide, chunks_high);
             tilemap.set_auto_spawn(spawn_dimensions);
-            // for (_camera, camera_transform) in camera_query.iter() {
-            //     auto_spawn(
-            //         camera_transform,
-            //         &tilemap_transform,
-            //         &mut tilemap,
-            //         spawn_dimensions,
-            //     );
-            // }
+            for (_camera, camera_transform) in camera_query.iter() {
+                auto_spawn(
+                    camera_transform,
+                    &tilemap_transform,
+                    &mut tilemap,
+                    spawn_dimensions,
+                );
+            }
         }
     }
 }
